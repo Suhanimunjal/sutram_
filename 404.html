@@ -452,10 +452,65 @@
     gap: 4px;
   }
 
+  /* Mobile Phone Responsive Topbar & Logo Fixes */
+  @media (max-width: 900px) {
+    .topbar {
+      min-height: 84px;
+      padding: 8px 60px 8px 16px;
+    }
+    .brand-copy { font-size: 9px; }
+    .brand-copy strong { font-size: 9.5px; }
+    .logo-image { height: 40px; }
+    .isea-image { height: 38px; }
+    .igdtuw-image { height: 38px; }
+    .sutram-image { max-width: 180px; height: 50px; }
+  }
+
   @media (max-width: 680px) {
-    .topbar { padding: 8px 50px 8px 12px; }
-    .brand-copy { font-size: 8px; }
-    .footer-container { grid-template-columns: 1fr; padding: 24px 20px; }
+    .topbar {
+      min-height: 76px;
+      padding: 8px 52px 8px 10px;
+    }
+    .brand { gap: 6px; }
+    .brand-copy { display: none; }
+    .logo-image { height: 34px; }
+    .isea-image { height: 32px; }
+    .igdtuw-image { height: 32px; }
+    .sutram-image { max-width: 140px; height: 42px; }
+    .hamburger-btn {
+      right: 10px;
+      width: 38px;
+      height: 38px;
+      padding: 8px;
+    }
+    .footer-container {
+      grid-template-columns: 1fr !important;
+      padding: 28px 20px 24px;
+      gap: 32px;
+    }
+    .footer-col h2 { font-size: 13px; }
+    .social-buttons { gap: 8px; }
+    .social-btn { padding: 9px 14px; font-size: 12.5px; }
+    .contact-list { gap: 14px; font-size: 13px; word-break: break-word; overflow-wrap: anywhere; }
+    .contact-link-item { flex-wrap: wrap; word-break: break-word; overflow-wrap: anywhere; }
+  }
+
+  @media (max-width: 440px) {
+    .topbar {
+      min-height: 68px;
+      padding: 6px 46px 6px 8px;
+    }
+    .brand { gap: 4px; }
+    .logo-image { height: 28px; }
+    .isea-image { height: 26px; }
+    .igdtuw-image { height: 26px; }
+    .sutram-image { max-width: 115px; height: 34px; }
+    .hamburger-btn {
+      right: 8px;
+      width: 34px;
+      height: 34px;
+      padding: 6px;
+    }
   }
 </style>
 </head>
