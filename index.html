@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SUTRAM 2026 | Where Every Trace Connects</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Montserrat:wght@500;600;700;800;900&family=Outfit:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink-primary: #0f2b48;
+    --ink-secondary: #2b5376;
+    --ink-muted: #537597;
+    --accent-blue: #2575fc;
+    --accent-cyan: #00b4d8;
+    --accent-glow: rgba(0, 180, 216, 0.25);
+    --border-line: rgba(197, 220, 232, 0.65);
+    --card-bg: rgba(255, 255, 255, 0.72);
+    --font-body: "Plus Jakarta Sans", sans-serif;
+    --font-heading: "Montserrat", sans-serif;
+    --font-sutram: "Comfortaa", "Outfit", sans-serif;
+    --font-mono: "Space Grotesk", sans-serif;
+  }
+  
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  html, body { 
+    min-height: 100%; 
+    font-family: var(--font-body); 
+    color: var(--ink-primary); 
+    background: #dceef7;
+    touch-action: manipulation;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: radial-gradient(circle at 15% 15%, rgba(0, 180, 216, 0.12) 0%, transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(37, 117, 252, 0.12) 0%, transparent 40%),
+                linear-gradient(135deg, #f0f7fb 0%, #dceef7 50%, #cce3f0 100%);
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  .page {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .announcement {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* Grid overlay effect */
+  .announcement::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(to right, rgba(0, 180, 216, 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0, 180, 216, 0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+
+  .topbar, .content, .contact { position: relative; z-index: 2; }
+
+  /* Topbar Styling */
+  .topbar {
+    min-height: 100px;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1.2fr;
+    align-items: center;
+    gap: 20px;
+    padding: 14px 32px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-line);
+    box-shadow: 0 4px 20px rgba(15, 43, 72, 0.05);
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+  }
+  .brand.right { justify-content: flex-end; }
+
+  /* Left-most ChatGPT icon styling */
+  .chatgpt-badge {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 54px;
+    height: 54px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(220, 240, 250, 0.8));
+    border: 1.5px solid rgba(0, 180, 216, 0.4);
+    box-shadow: 0 4px 14px rgba(0, 180, 216, 0.2);
+    flex-shrink: 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .chatgpt-badge:hover {
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 6px 20px rgba(0, 180, 216, 0.35);
+  }
+  .chatgpt-image {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0, 180, 216, 0.2));
+  }
+
+  .logo-image { height: 58px; width: auto; object-fit: contain; flex-shrink: 0; }
+  .isea-image { height: 56px; width: auto; object-fit: contain; flex-shrink: 0; }
+  .igdtuw-image { height: 56px; width: auto; object-fit: contain; flex-shrink: 0; }
+  .digital-image { height: 52px; width: auto; object-fit: contain; flex-shrink: 0; mix-blend-mode: multiply; }
+
+  .brand-copy {
+    color: var(--ink-primary);
+    font-family: var(--font-heading);
+    font-size: 11px;
+    line-height: 1.35;
+    font-weight: 600;
+  }
+  .brand-copy strong {
+    display: block;
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--ink-primary);
+  }
+
+  .sutram-mark {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .sutram-image {
+    display: block;
+    max-width: 260px;
+    height: 72px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 8px rgba(15, 43, 72, 0.08));
+    mix-blend-mode: multiply;
+  }
+
+  /* Content Section */
+  .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 36px 24px 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 20px;
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(0, 180, 216, 0.4);
+    border-radius: 999px;
+    color: #028090;
+    font-family: var(--font-heading);
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    box-shadow: 0 4px 15px rgba(0, 180, 216, 0.12);
+  }
+  .eyebrow-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--accent-cyan);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--accent-cyan);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.85); }
+  }
+
+  .hero-logo-heading {
+    margin: 18px 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .sutram-hero-logo {
+    width: min(680px, 88vw);
+    height: auto;
+    max-height: 170px;
+    object-fit: contain;
+    filter: drop-shadow(0 6px 24px rgba(0, 119, 182, 0.18));
+    transition: transform 0.3s ease;
+  }
+  .sutram-hero-logo:hover {
+    transform: scale(1.02);
+  }
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  .tagline {
+    margin: 4px 0 28px;
+    font-family: var(--font-mono);
+    font-size: clamp(12px, 1.8vw, 15px);
+    font-weight: 700;
+    letter-spacing: 0.35em;
+    color: var(--ink-secondary);
+    text-transform: uppercase;
+  }
+
+  .live-line {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-family: var(--font-heading);
+    color: var(--ink-secondary);
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    margin-bottom: 24px;
+  }
+  
+  .date {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 18px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #0077b6, #00b4d8);
+    color: #ffffff;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    box-shadow: 0 4px 14px rgba(0, 180, 216, 0.35);
+  }
+
+  .launch {
+    margin: 16px 0 14px;
+    font-family: var(--font-heading);
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+
+  /* Countdown Grid */
+  .countdown {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(85px, 115px));
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+
+  .unit {
+    position: relative;
+    padding: 16px 10px 14px;
+    border: 1px solid var(--border-line);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 8px 24px rgba(15, 43, 72, 0.08);
+    transition: transform 0.25 ease, box-shadow 0.25s ease;
+  }
+  .unit:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(15, 43, 72, 0.12);
+  }
+  .unit:not(:last-child)::after {
+    content: ":";
+    position: absolute;
+    right: -12px;
+    top: 20px;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 26px;
+    color: var(--ink-secondary);
+  }
+
+  .number {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: clamp(32px, 4.5vw, 44px);
+    line-height: 1;
+    color: #0077b6;
+  }
+
+  .label {
+    margin-top: 6px;
+    color: var(--ink-muted);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .message {
+    margin-top: 8px;
+    color: var(--ink-secondary);
+    font-size: 15px;
+    line-height: 1.6;
+    max-width: 580px;
+  }
+  .message strong {
+    color: #0077b6;
+    font-weight: 800;
+  }
+
+  /* Full-Bleed Page Footer */
+  .page-footer {
+    width: 100%;
+    margin-top: auto;
+    background: linear-gradient(180deg, #092038 0%, #051424 100%);
+    border-top: 1px solid rgba(0, 180, 216, 0.35);
+    color: #e2f1f8;
+    box-shadow: 0 -10px 40px rgba(9, 32, 56, 0.25);
+  }
+
+  .footer-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 36px 32px 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+
+  .footer-col h2 {
+    color: #00b4d8;
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .footer-col h2::before {
+    content: "";
+    width: 12px;
+    height: 3px;
+    background: #00b4d8;
+    border-radius: 2px;
+  }
+
+  .social-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .social-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 10px 16px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.25s ease;
+  }
+  .social-btn:hover {
+    background: rgba(0, 180, 216, 0.2);
+    border-color: #00b4d8;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 180, 216, 0.25);
+  }
+  .social-btn svg {
+    color: #00b4d8;
+    flex-shrink: 0;
+  }
+
+  .handle-badge {
+    display: inline-block;
+    color: rgba(226, 241, 248, 0.7);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+  }
+
+  .contact-list {
+    display: grid;
+    gap: 12px;
+    font-size: 13.5px;
+  }
+
+  .contact-link-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #e2f1f8;
+    transition: color 0.2s ease;
+  }
+  .contact-link-item:hover {
+    color: #00b4d8;
+  }
+
+  .contact-icon-badge {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background: rgba(0, 180, 216, 0.15);
+    border: 1px solid rgba(0, 180, 216, 0.3);
+    color: #00b4d8;
+    display: grid;
+    place-items: center;
+    font-size: 15px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .wa-group-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 4px;
+    padding: 10px 18px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 13px;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+    transition: all 0.25s ease;
+  }
+  .wa-group-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
+  }
+
+  .footer-bottom-bar {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 16px 32px;
+    text-align: center;
+    font-size: 12px;
+    color: rgba(226, 241, 248, 0.6);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* Comprehensive Mobile & Tablet Responsive Design */
+  @media (max-width: 900px) {
+    .topbar {
+      display: flex;
+      flex-direction: column;
+      padding: 12px 18px;
+      gap: 12px;
+    }
+    .brand-row {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .brand {
+      gap: 8px;
+    }
+    .brand-copy {
+      font-size: 10px;
+      line-height: 1.25;
+    }
+    .brand-copy strong {
+      font-size: 11px;
+    }
+    .chatgpt-badge {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+    }
+    .chatgpt-image {
+      width: 34px;
+      height: 34px;
+    }
+    .logo-image, .isea-image, .igdtuw-image {
+      height: 46px;
+    }
+    .digital-image {
+      height: 42px;
+    }
+    .sutram-image {
+      max-width: 220px;
+      height: 58px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .topbar {
+      padding: 10px 14px;
+      gap: 8px;
+    }
+    .brand {
+      gap: 6px;
+    }
+    .brand-copy {
+      font-size: 9px;
+    }
+    .brand-copy strong {
+      font-size: 9.5px;
+    }
+    .chatgpt-badge {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+    }
+    .chatgpt-image {
+      width: 28px;
+      height: 28px;
+    }
+    .logo-image, .isea-image, .igdtuw-image {
+      height: 38px;
+    }
+    .digital-image {
+      height: 34px;
+    }
+    .sutram-hero-logo {
+      width: 95vw;
+      max-height: 110px;
+    }
+    .content {
+      padding: 24px 14px 28px;
+    }
+    .eyebrow {
+      font-size: 11px;
+      padding: 6px 14px;
+      line-height: 1.35;
+    }
+    .tagline {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      margin: 4px 0 20px;
+    }
+    .live-line {
+      font-size: 12px;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+    .date {
+      font-size: 12px;
+      padding: 7px 14px;
+    }
+    .launch {
+      font-size: 12px;
+      margin: 12px 0 10px;
+    }
+    .countdown {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      width: 100%;
+      max-width: 360px;
+      margin-bottom: 22px;
+    }
+    .unit {
+      padding: 10px 4px 8px;
+      border-radius: 10px;
+    }
+    .unit:not(:last-child)::after {
+      right: -6px;
+      font-size: 18px;
+      top: 10px;
+    }
+    .number {
+      font-size: clamp(24px, 6.5vw, 32px);
+    }
+    .label {
+      font-size: 9.5px;
+      letter-spacing: 0.05em;
+      margin-top: 4px;
+    }
+    .message {
+      font-size: 13.5px;
+      padding: 0 4px;
+    }
+    .contact {
+      grid-template-columns: 1fr;
+      width: calc(100% - 24px);
+      margin: 0 auto 20px;
+    }
+    .contact-block {
+      padding: 16px 18px;
+    }
+    .contact-block + .contact-block {
+      border-left: none;
+      border-top: 1px solid var(--border-line);
+    }
+    .contact h2 {
+      font-size: 11px;
+      margin-bottom: 10px;
+    }
+    .socials a {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+    }
+    .details {
+      font-size: 12.5px;
+      gap: 10px;
+    }
+    .details-item {
+      min-height: 32px;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .brand-copy {
+      display: none;
+    }
+    .sutram-hero-logo {
+      max-height: 90px;
+    }
+    .countdown {
+      gap: 4px;
+    }
+    .unit {
+      padding: 8px 2px 6px;
+    }
+    .unit:not(:last-child)::after {
+      display: none;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+    <main class="announcement">
+      <header class="topbar">
+        <div class="brand">
+          <div class="chatgpt-badge" title="AI Cyber Forensics Engine">
+            <img class="chatgpt-image" src="ChatGPT Image Aug 19, 2026, 01_39_59 AM.png" alt="ChatGPT AI Forensics Logo" />
+          </div>
+          <img class="logo-image" src="Emblem_of_India_with_transparent_background.png" alt="Government of India emblem" />
+          <img class="isea-image" src="isea_logo.png" alt="ISEA logo" />
+          <div class="brand-copy">
+            <strong>Ministry of Electronics &amp;</strong>Information Technology<br />Government of India
+          </div>
+        </div>
+        <div class="sutram-mark">
+          <img class="sutram-image" src="sutram_logo.jpeg" alt="SUTRAM 2026 logo" />
+        </div>
+        <div class="brand right">
+          <img class="igdtuw-image" src="igdtuw-logo.473df1c6cbcd03a6bf01.png" alt="IGDTUW logo" />
+          <div class="brand-copy">
+            <strong>Indira Gandhi Delhi</strong>Technical University<br />for Women
+          </div>
+          <img class="digital-image" src="digital_india.png" alt="Digital India logo" />
+        </div>
+      </header>
+
+      <section class="content">
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          AI-Powered Cyber Investigation &amp; Digital Forensics Hackathon
+        </div>
+        <h1 class="hero-logo-heading">
+          <img class="sutram-hero-logo" src="sutram_title_exact.png" alt="SUTRAM 2026 - Where Every Trace Connects" />
+          <span class="sr-only">SUTRAM 2026</span>
+        </h1>
+        <p class="tagline">WHERE EVERY TRACE CONNECTS</p>
+        
+        <div class="live-line">
+          <span>WEBSITE &amp; DETAILS WILL BE LIVE ON</span>
+          <span class="date">5 SEPTEMBER 2026</span>
+        </div>
+
+        <div class="launch">Launching in</div>
+        <div class="countdown" aria-label="Countdown to SUTRAM 2026 launch">
+          <div class="unit"><div class="number" id="days">00</div><div class="label">Days</div></div>
+          <div class="unit"><div class="number" id="hours">00</div><div class="label">Hours</div></div>
+          <div class="unit"><div class="number" id="minutes">00</div><div class="label">Minutes</div></div>
+          <div class="unit"><div class="number" id="seconds">00</div><div class="label">Seconds</div></div>
+        </div>
+        
+        <p class="message">Get ready to innovate, investigate, and inspire justice with AI.<br /><strong>Stay tuned!</strong></p>
+      </section>
+
+      <footer class="page-footer">
+        <div class="footer-container">
+          <section class="footer-col">
+            <h2>Follow Us</h2>
+            <div class="social-buttons">
+              <a href="https://www.instagram.com/sutram_2026?igsh=MTRsaG00M3dqNG5oaA==" class="social-btn" target="_blank" rel="noopener" aria-label="Instagram">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                Instagram
+              </a>
+              <a href="https://chat.whatsapp.com/GdZ1pulNiuoJmmW5uX4iJ7?s=sh&p=a&ilr=0" class="social-btn" target="_blank" rel="noopener" aria-label="WhatsApp">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                WhatsApp
+              </a>
+              <a href="https://t.me/sutram2026" class="social-btn" target="_blank" rel="noopener" aria-label="Telegram">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                Telegram
+              </a>
+            </div>
+            <div class="handle-badge">@sutram2026</div>
+          </section>
+
+          <section class="footer-col">
+            <h2>Contact Us</h2>
+            <div class="contact-list">
+              <a href="mailto:contact@sutram2026.in" class="contact-link-item">
+                <span class="contact-icon-badge">✉</span>
+                <span>contact@sutram2026.in</span>
+              </a>
+              <a href="tel:+919876543210" class="contact-link-item">
+                <span class="contact-icon-badge">☎</span>
+                <span>+91 98765 43210</span>
+              </a>
+              <a href="https://www.sutram2026.in" class="contact-link-item" target="_blank" rel="noopener">
+                <span class="contact-icon-badge">🌐</span>
+                <span>www.sutram2026.in</span>
+              </a>
+            </div>
+          </section>
+        </div>
+
+        <div class="footer-bottom-bar">
+          <span>&copy; 2026 SUTRAM &middot; IGDTUW</span>
+          <span>Ministry of Electronics &amp; Information Technology (MeitY) &middot; Government of India</span>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+<script>
+  const target = new Date("2026-09-05T00:00:00+05:30").getTime();
+  const pad = value => String(value).padStart(2, "0");
+  function updateCountdown() {
+    let remaining = Math.max(0, target - Date.now());
+    const days = Math.floor(remaining / 86400000);
+    remaining %= 86400000;
+    const hours = Math.floor(remaining / 3600000);
+    remaining %= 3600000;
+    const minutes = Math.floor(remaining / 60000);
+    const seconds = Math.floor((remaining % 60000) / 1000);
+    document.getElementById("days").textContent = pad(days);
+    document.getElementById("hours").textContent = pad(hours);
+    document.getElementById("minutes").textContent = pad(minutes);
+    document.getElementById("seconds").textContent = pad(seconds);
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+</script>
+</body>
+</html>
+

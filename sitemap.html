@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Website Sitemap — SUTRAM 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Montserrat:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #0b0b0c;
+    --ink: #f5f5f5;
+    --muted: #9a9aa2;
+    --line: rgba(255,255,255,0.1);
+    --red: #d90429;
+    --font-display: "Space Grotesk", sans-serif;
+    --font-sutram: "Comfortaa", sans-serif;
+    --font-mono: "JetBrains Mono", monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-display);
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px clamp(20px, 4vw, 40px);
+    border-bottom: 1px solid var(--line);
+  }
+  .logo {
+    font-family: var(--font-sutram);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .logo b { color: var(--red); }
+  .back {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 8px 16px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    transition: all 0.2s ease;
+  }
+  .back:hover { color: var(--ink); border-color: var(--red); }
+
+  main {
+    flex: 1;
+    width: min(780px, 92vw);
+    margin: 0 auto;
+    padding: 48px 0 56px;
+  }
+
+  h1 {
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  h1 span { color: var(--red); }
+
+  .sub {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--muted);
+    margin-bottom: 40px;
+    max-width: 640px;
+  }
+  .sub b { color: var(--ink); font-weight: 600; }
+
+  section { margin-bottom: 30px; }
+
+  h2 {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  h2::before {
+    content: "";
+    width: 14px;
+    height: 2px;
+    background: var(--red);
+    opacity: 0.5;
+  }
+
+  ul { list-style: none; }
+  li {
+    padding: 5px 0;
+    padding-left: 24px;
+    font-size: 15px;
+  }
+  li::before {
+    content: "/";
+    color: var(--red);
+    font-family: var(--font-mono);
+    margin-right: 10px;
+    margin-left: -24px;
+    display: inline-block;
+    width: 14px;
+  }
+  li a {
+    color: var(--muted);
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  li a:hover { color: var(--ink); border-bottom-color: var(--red); }
+  li ul { padding-left: 20px; margin-top: 2px; }
+  li li { font-size: 13.5px; color: var(--muted); }
+  li li::before { color: var(--muted); content: "-"; }
+  .tag { color: var(--red); font-weight: 500; }
+
+  .navbox {
+    margin-top: 40px;
+    padding: 22px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: rgba(255,255,255,0.02);
+  }
+  .navbox h2 { margin-bottom: 12px; }
+  .navbox .row { font-size: 14px; color: var(--muted); line-height: 2; }
+  .navbox .row a { color: var(--ink); }
+  .navbox .row a:hover { color: var(--red); }
+  .navbox .bar { color: var(--muted); opacity: 0.5; margin: 0 10px; }
+
+  .ctabox {
+    margin-top: 16px;
+    padding: 22px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: rgba(255,255,255,0.02);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+  }
+  .ctabox h2 { margin: 0; }
+  .cta {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 13px 22px;
+    border-radius: 8px;
+  }
+  .cta-solid { background: var(--red); color: #fff; }
+  .cta-solid:hover { opacity: 0.9; }
+  .cta-ghost { border: 1px solid var(--line); color: var(--muted); }
+  .cta-ghost:hover { color: var(--ink); border-color: var(--red); }
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 20px clamp(20px, 4vw, 40px);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  @media (max-width: 640px) {
+    .top {
+      padding: 14px 16px;
+    }
+    main {
+      padding: 28px 0 40px;
+    }
+    .back {
+      padding: 8px 14px;
+      font-size: 11px;
+      min-height: 38px;
+      display: inline-flex;
+      align-items: center;
+    }
+    li {
+      padding: 8px 0 8px 24px;
+    }
+    .ctabox {
+      padding: 16px;
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .ctabox h2 { width: 100%; font-size: 12px; }
+    .cta {
+      text-align: center;
+      padding: 14px 18px;
+      width: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="top">
+  <a href="index.html" class="logo" title="SUTRAM 2026">
+    <img src="sutram_word_exact.png" alt="SUTRAM" style="height: 28px; vertical-align: middle; filter: brightness(0) invert(1);" />
+  </a>
+  <a href="index.html" class="back">Back to Home</a>
+</div>
+
+<main>
+  <h1>Website <span>Sitemap</span></h1>
+  <p class="sub">National Hackathon on <b>AI-Powered Digital Investigation, Incident Response &amp; Cyber Forensics Technologies</b>.</p>
+
+  <section>
+    <h2>1. Home</h2>
+    <ul>
+      <li><a href="#">Hero / Hackathon Introduction</a></li>
+      <li><a href="#">SUTRAM 2026 — Theme &amp; Motto</a></li>
+      <li><a href="#">Registration CTA</a></li>
+      <li><a href="#">Key Dates</a></li>
+      <li><a href="#">Prize Pool</a></li>
+      <li><a href="#">Quick Stats</a></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>2. About</h2>
+    <ul>
+      <li><a href="#">About SUTRAM 2026</a></li>
+      <li><a href="#">Hackathon Vision</a></li>
+      <li><a href="#">Objectives</a>
+        <ul>
+          <li><a href="#">AI Technologies</a></li>
+          <li><a href="#">Mobile Forensics</a></li>
+          <li><a href="#">Cyber Forensics</a></li>
+          <li><a href="#">Incident Response</a></li>
+          <li><a href="#">Digital Investigation</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Innovation Pipeline</a>
+        <ul>
+          <li><span class="tag">Idea &rarr; PoC &rarr; MVP &rarr; Prototype &rarr; Adoption</span></li>
+        </ul>
+      </li>
+      <li><a href="#">Organizers</a>
+        <ul>
+          <li><a href="#"><span class="tag">ISEA</span> Phase-III</a></li>
+          <li><a href="#">Ministry of Electronics &amp; Information Technology (MeitY)</a></li>
+          <li><a href="#">IGDTUW</a></li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>3. Problem Statements</h2>
+    <ul>
+      <li><a href="#">PS01 — AI-Assisted Mobile Evidence Intelligence</a></li>
+      <li><a href="#">PS02 — Multimedia Evidence Authentication &amp; Deepfake Detection</a></li>
+      <li><a href="#">PS03 — Digital Evidence Correlation &amp; Crime Reconstruction</a></li>
+      <li><a href="#">PS04 — AI-Powered Cyber Fraud Investigation &amp; Attribution</a></li>
+      <li><a href="#">PS05 — AI-Powered Digital Investigation Assistant</a></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>4. Participation</h2>
+    <ul>
+      <li><a href="#">Eligibility</a>
+        <ul>
+          <li><a href="#">UG Students</a></li>
+          <li><a href="#">PG Students</a></li>
+          <li><a href="#">PhD / Research Scholars</a></li>
+          <li><a href="#">Startups</a></li>
+          <li><a href="#">Young Professionals</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Team Formation</a>
+        <ul>
+          <li><a href="#">Individual Participation</a></li>
+          <li><a href="#">Maximum 4 Members</a></li>
+          <li><a href="#">Inter-Institute Teams</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Participation Guidelines</a></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>5. Registration</h2>
+    <ul>
+      <li><a href="#">How to Register</a></li>
+      <li><a href="#">Step-by-Step Registration Guide</a></li>
+      <li><a href="#">ISEA IVP Portal — External Portal</a>
+        <ul>
+          <li><a href="#"><span class="tag">Register Now</span></a></li>
+          <li><a href="#">Registration QR Code</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Registration Support / Instructions</a></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>6. Project Submission</h2>
+    <ul>
+      <li><a href="#">Submission Process</a></li>
+      <li><a href="#">What to Submit</a>
+        <ul>
+          <li><a href="#">Proposal</a></li>
+          <li><a href="#">Proof of Concept (PoC)</a></li>
+          <li><a href="#">Prototype</a></li>
+          <li><a href="#">Presentation</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Submission Guidelines</a></li>
+      <li><a href="#">Required Documents</a></li>
+      <li><a href="#">Submission Deadline</a></li>
+      <li><a href="#">ELMS Portal — External Portal</a>
+        <ul>
+          <li><a href="#"><span class="tag">Submit Project</span></a></li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>7. Hackathon Journey</h2>
+    <ul>
+      <li><a href="#">Registration</a></li>
+      <li><a href="#">Round 1 — Online National Quiz</a></li>
+      <li><a href="#">Round 2 — Idea Presentation &amp; Technical Evaluation</a></li>
+      <li><a href="#">Mentorship</a></li>
+      <li><a href="#">Proposal / PoC Submission — <span class="tag">ELMS Portal</span></a></li>
+      <li><a href="#">Finalists Announcement</a></li>
+      <li><a href="#">Grand Finale — <span class="tag">24-Hour Offline Hackathon @ IGDTUW</span></a></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>8. Prizes</h2>
+    <ul>
+      <li><a href="#">Total Prize Pool <span class="tag">INR 2,50,000</span></a></li>
+      <li><a href="#">First Prize <span class="tag">INR 1,25,000</span></a></li>
+      <li><a href="#">Second Prize <span class="tag">INR 75,000</span></a></li>
+      <li><a href="#">Third Prize <span class="tag">INR 50,000</span></a></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>9. Evaluation</h2>
+    <ul>
+      <li><a href="#">Prototype &amp; Demonstration — <span class="tag">70%</span></a>
+        <ul>
+          <li><a href="#">Innovation</a></li>
+          <li><a href="#">Working Prototype</a></li>
+          <li><a href="#">Technical Feasibility</a></li>
+          <li><a href="#">Scalability</a></li>
+          <li><a href="#">Practical Impact</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Report &amp; Presentation — <span class="tag">30%</span></a>
+        <ul>
+          <li><a href="#">Technical Documentation</a></li>
+          <li><a href="#">Problem Understanding</a></li>
+          <li><a href="#">Business Value</a></li>
+          <li><a href="#">Presentation</a></li>
+          <li><a href="#">Q&amp;A</a></li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>10. FAQ</h2>
+    <ul>
+      <li><a href="#">About the Hackathon</a></li>
+      <li><a href="#">Eligibility</a></li>
+      <li><a href="#">Team Size</a></li>
+      <li><a href="#">Registration</a></li>
+      <li><a href="#">Problem Statements</a></li>
+      <li><a href="#">Quiz</a></li>
+      <li><a href="#">Project Submission</a></li>
+      <li><a href="#">Mentorship</a></li>
+      <li><a href="#">Evaluation</a></li>
+      <li><a href="#">Grand Finale</a></li>
+      <li><a href="#">Certificates</a></li>
+      <li><a href="#">Technology Stack</a></li>
+      <li><a href="#">Open-Source Libraries / Tools</a></li>
+      <li><a href="#">Hardware Requirements</a></li>
+      <li><a href="#">Accommodation</a></li>
+      <li><a href="#">Internet Facilities</a></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>11. Contact</h2>
+    <ul>
+      <li><a href="#">Email</a></li>
+      <li><a href="#">Phone</a></li>
+      <li><a href="#">Venue</a></li>
+      <li><a href="#">Social / Official Links</a></li>
+      <li><a href="#">Organizing Institutions</a></li>
+    </ul>
+  </section>
+
+  <div class="navbox">
+    <h2>Recommended Primary Navigation</h2>
+    <div class="row">
+      <a href="#">Home</a><span class="bar">|</span>
+      <a href="#">About</a><span class="bar">|</span>
+      <a href="#">Problem Statements</a><span class="bar">|</span>
+      <a href="#">Participation</a><span class="bar">|</span>
+      <a href="#">Hackathon Journey</a><span class="bar">|</span>
+      <a href="#">Prizes</a><span class="bar">|</span>
+      <a href="#">Evaluation</a><span class="bar">|</span>
+      <a href="#">FAQ</a><span class="bar">|</span>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+
+  <div class="ctabox">
+    <h2>Primary CTAs</h2>
+    <a href="#" class="cta cta-solid">Register on ISEA IVP Portal</a>
+    <a href="#" class="cta cta-ghost">Submit Project on ELMS Portal</a>
+  </div>
+</main>
+
+<footer>
+  <span>&copy; 2026 SUTRAM Â· IGDTUW</span>
+  <span>MeitY Â· Government of India</span>
+</footer>
+
+</body>
+</html>
