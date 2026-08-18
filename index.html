@@ -71,15 +71,15 @@
 
   .topbar, .content, .contact { position: relative; z-index: 2; }
 
-  /* Topbar Styling */
+  /* Absolute Dead-Center Topbar Alignment */
   .topbar {
-    min-height: 100px;
-    display: grid;
-    grid-template-columns: 1.2fr 1fr 1.2fr;
+    position: relative;
+    min-height: 94px;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 20px;
-    padding: 14px 32px;
-    background: rgba(255, 255, 255, 0.85);
+    padding: 10px 76px 10px 24px;
+    background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border-line);
@@ -89,54 +89,207 @@
   .brand {
     display: flex;
     align-items: center;
-    gap: 12px;
-    min-width: 0;
+    gap: 10px;
   }
-  .brand.right { justify-content: flex-end; }
-
-  /* Left-most ChatGPT icon styling */
-  .chatgpt-badge {
-    position: relative;
+  .brand.right {
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 54px;
-    height: 54px;
-    border-radius: 14px;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(220, 240, 250, 0.8));
-    border: 1.5px solid rgba(0, 180, 216, 0.4);
-    box-shadow: 0 4px 14px rgba(0, 180, 216, 0.2);
-    flex-shrink: 0;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .chatgpt-badge:hover {
-    transform: translateY(-2px) scale(1.04);
-    box-shadow: 0 6px 20px rgba(0, 180, 216, 0.35);
-  }
-  .chatgpt-image {
-    width: 44px;
-    height: 44px;
-    object-fit: contain;
-    filter: drop-shadow(0 2px 4px rgba(0, 180, 216, 0.2));
+    gap: 10px;
+    justify-content: flex-end;
   }
 
-  .logo-image { height: 58px; width: auto; object-fit: contain; flex-shrink: 0; }
-  .isea-image { height: 56px; width: auto; object-fit: contain; flex-shrink: 0; }
-  .igdtuw-image { height: 56px; width: auto; object-fit: contain; flex-shrink: 0; }
-  .digital-image { height: 52px; width: auto; object-fit: contain; flex-shrink: 0; mix-blend-mode: multiply; }
+  /* Logo heights & vertical baseline centering */
+  .logo-image { height: 48px; width: auto; object-fit: contain; flex-shrink: 0; display: block; }
+  .isea-image { height: 46px; width: auto; object-fit: contain; flex-shrink: 0; display: block; }
+  .igdtuw-image { height: 46px; width: auto; object-fit: contain; flex-shrink: 0; display: block; }
+  .digital-image { height: 42px; width: auto; object-fit: contain; flex-shrink: 0; mix-blend-mode: multiply; display: block; }
 
   .brand-copy {
     color: var(--ink-primary);
     font-family: var(--font-heading);
-    font-size: 11px;
-    line-height: 1.35;
+    font-size: 10.5px;
+    line-height: 1.3;
     font-weight: 600;
   }
   .brand-copy strong {
     display: block;
-    font-size: 12px;
+    font-size: 11.5px;
     font-weight: 800;
-    color: var(--ink-primary);
+  }
+
+  .sutram-mark {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+  }
+  .sutram-image {
+    display: block;
+    width: auto;
+    max-width: 240px;
+    height: 60px;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+  }
+
+  /* 3-Lines Navigation Button (Hamburger Menu) */
+  .hamburger-btn {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 42px;
+    height: 42px;
+    padding: 9px;
+    background: rgba(15, 43, 72, 0.06);
+    border: 1.5px solid rgba(15, 43, 72, 0.15);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    flex-shrink: 0;
+    z-index: 10;
+  }
+  .hamburger-btn:hover {
+    background: rgba(0, 180, 216, 0.15);
+    border-color: #00b4d8;
+    transform: translateY(-50%) scale(1.04);
+  }
+  .hamburger-btn .bar {
+    width: 100%;
+    height: 2.5px;
+    background: var(--ink-primary);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+  .hamburger-btn.active .bar:nth-child(1) {
+    transform: translateY(7.5px) rotate(45deg);
+  }
+  .hamburger-btn.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger-btn.active .bar:nth-child(3) {
+    transform: translateY(-7.5px) rotate(-45deg);
+  }
+
+  /* Slide-Out Navigation Drawer (Wider Layout) */
+  .nav-drawer {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: min(375px, 86vw);
+    height: 100vh;
+    background: linear-gradient(180deg, #092038 0%, #051424 100%);
+    border-left: 1.5px solid rgba(0, 180, 216, 0.4);
+    box-shadow: -10px 0 40px rgba(5, 20, 36, 0.6);
+    z-index: 9999;
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    color: #e2f1f8;
+  }
+  .nav-drawer.open {
+    right: 0;
+  }
+  .drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(0, 180, 216, 0.25);
+    margin-bottom: 22px;
+  }
+  .drawer-title {
+    font-family: var(--font-sutram);
+    font-size: 16px;
+    font-weight: 700;
+    color: #00b4d8;
+    letter-spacing: 0.08em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .drawer-title::before {
+    content: "";
+    width: 10px;
+    height: 3px;
+    background: #00b4d8;
+    border-radius: 2px;
+  }
+  .close-drawer {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #00b4d8;
+    font-size: 18px;
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    transition: all 0.2s ease;
+  }
+  .close-drawer:hover {
+    background: rgba(0, 180, 216, 0.2);
+    border-color: #00b4d8;
+    color: #ffffff;
+  }
+  .drawer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .drawer-links li a {
+    font-family: var(--font-heading);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 18px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    transition: all 0.25s ease;
+  }
+  .drawer-links li a span {
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+  }
+  .drawer-links li a:hover {
+    background: rgba(0, 180, 216, 0.2);
+    border-color: #00b4d8;
+    color: #ffffff;
+    transform: translateX(4px);
+    box-shadow: 0 4px 14px rgba(0, 180, 216, 0.2);
+  }
+
+  .nav-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+    z-index: 9998;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .nav-backdrop.open {
+    opacity: 1;
+    pointer-events: auto;
   }
 
   .sutram-mark {
@@ -146,8 +299,9 @@
   }
   .sutram-image {
     display: block;
-    max-width: 260px;
-    height: 72px;
+    width: min(330px, 31vw);
+    height: auto;
+    max-height: 86px;
     object-fit: contain;
     filter: drop-shadow(0 2px 8px rgba(15, 43, 72, 0.08));
     mix-blend-mode: multiply;
@@ -204,9 +358,9 @@
     align-items: center;
   }
   .sutram-hero-logo {
-    width: min(680px, 88vw);
+    width: min(900px, 92vw);
     height: auto;
-    max-height: 170px;
+    max-height: 250px;
     object-fit: contain;
     filter: drop-shadow(0 6px 24px rgba(0, 119, 182, 0.18));
     transition: transform 0.3s ease;
@@ -345,7 +499,7 @@
     background: linear-gradient(180deg, #092038 0%, #051424 100%);
     border-top: 1px solid rgba(0, 180, 216, 0.35);
     color: #e2f1f8;
-    box-shadow: 0 -10px 40px rgba(9, 32, 56, 0.25);
+    box-shadow: 0 -10px 40px rgba(5, 20, 36, 0.3);
   }
 
   .footer-container {
@@ -483,186 +637,78 @@
     margin: 0 auto;
   }
 
-  /* Comprehensive Mobile & Tablet Responsive Design */
+  /* Responsive Design — SUTRAM ALWAYS IN MIDDLE */
   @media (max-width: 900px) {
     .topbar {
-      display: flex;
-      flex-direction: column;
-      padding: 12px 18px;
-      gap: 12px;
-    }
-    .brand-row {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-    }
-    .brand {
-      gap: 8px;
-    }
-    .brand-copy {
-      font-size: 10px;
-      line-height: 1.25;
-    }
-    .brand-copy strong {
-      font-size: 11px;
-    }
-    .chatgpt-badge {
-      width: 44px;
-      height: 44px;
-      border-radius: 10px;
-    }
-    .chatgpt-image {
-      width: 34px;
-      height: 34px;
-    }
-    .logo-image, .isea-image, .igdtuw-image {
-      height: 46px;
-    }
-    .digital-image {
-      height: 42px;
-    }
-    .sutram-image {
-      max-width: 220px;
-      height: 58px;
-    }
-  }
-
-  @media (max-width: 650px) {
-    .topbar {
+      grid-template-columns: 1fr auto;
       padding: 10px 14px;
-      gap: 8px;
-    }
-    .brand {
-      gap: 6px;
-    }
-    .brand-copy {
-      font-size: 9px;
-    }
-    .brand-copy strong {
-      font-size: 9.5px;
-    }
-    .chatgpt-badge {
-      width: 38px;
-      height: 38px;
-      border-radius: 8px;
-    }
-    .chatgpt-image {
-      width: 28px;
-      height: 28px;
-    }
-    .logo-image, .isea-image, .igdtuw-image {
-      height: 38px;
-    }
-    .digital-image {
-      height: 34px;
-    }
-    .sutram-hero-logo {
-      width: 95vw;
-      max-height: 110px;
-    }
-    .content {
-      padding: 24px 14px 28px;
-    }
-    .eyebrow {
-      font-size: 11px;
-      padding: 6px 14px;
-      line-height: 1.35;
-    }
-    .tagline {
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      margin: 4px 0 20px;
-    }
-    .live-line {
-      font-size: 12px;
-      flex-direction: column;
-      gap: 6px;
-      margin-bottom: 20px;
-    }
-    .date {
-      font-size: 12px;
-      padding: 7px 14px;
-    }
-    .launch {
-      font-size: 12px;
-      margin: 12px 0 10px;
-    }
-    .countdown {
-      grid-template-columns: repeat(4, 1fr);
-      gap: 6px;
-      width: 100%;
-      max-width: 360px;
-      margin-bottom: 22px;
-    }
-    .unit {
-      padding: 10px 4px 8px;
-      border-radius: 10px;
-    }
-    .unit:not(:last-child)::after {
-      right: -6px;
-      font-size: 18px;
-      top: 10px;
-    }
-    .number {
-      font-size: clamp(24px, 6.5vw, 32px);
-    }
-    .label {
-      font-size: 9.5px;
-      letter-spacing: 0.05em;
-      margin-top: 4px;
-    }
-    .message {
-      font-size: 13.5px;
-      padding: 0 4px;
-    }
-    .contact {
-      grid-template-columns: 1fr;
-      width: calc(100% - 24px);
-      margin: 0 auto 20px;
-    }
-    .contact-block {
-      padding: 16px 18px;
-    }
-    .contact-block + .contact-block {
-      border-left: none;
-      border-top: 1px solid var(--border-line);
-    }
-    .contact h2 {
-      font-size: 11px;
-      margin-bottom: 10px;
-    }
-    .socials a {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-    }
-    .details {
-      font-size: 12.5px;
       gap: 10px;
     }
-    .details-item {
-      min-height: 32px;
-    }
+    .topbar > .brand { display: none; }
+    .sutram-mark { grid-column: 1; justify-self: center; }
+    .hamburger-btn { grid-column: 2; grid-row: 1; }
+    .brand { gap: 6px; }
+    .brand-copy { font-size: 8.5px; line-height: 1.15; }
+    .brand-copy strong { font-size: 9px; }
+    .logo-image { height: 42px; }
+    .isea-image { height: 38px; }
+    .igdtuw-image { height: 38px; }
+    .digital-image { height: 34px; }
+    .sutram-image { width: min(300px, 55vw); max-height: 100px; }
+    .sutram-hero-logo { width: 92vw; max-height: 250px; }
   }
 
-  @media (max-width: 380px) {
-    .brand-copy {
-      display: none;
+  @media (max-width: 680px) {
+    .topbar {
+      grid-template-columns: 1fr auto;
+      padding: 8px 10px;
+      gap: 6px;
     }
-    .sutram-hero-logo {
-      max-height: 90px;
+    .topbar > .brand { display: none; }
+    .sutram-mark { grid-column: 1; justify-self: center; }
+    .hamburger-btn { grid-column: 2; grid-row: 1; }
+    .brand { gap: 4px; }
+    .brand-copy { font-size: 7.5px; line-height: 1.1; }
+    .brand-copy strong { font-size: 8px; }
+    .logo-image { height: 32px; }
+    .isea-image { height: 28px; }
+    .igdtuw-image { height: 28px; }
+    .digital-image { height: 26px; }
+    .sutram-image { width: min(260px, 58vw); max-height: 88px; }
+    .sutram-hero-logo { width: 94vw; max-height: 220px; }
+
+    /* Footer Mobile Fix: Single Column Stack */
+    .footer-container {
+      grid-template-columns: 1fr !important;
+      padding: 28px 20px 24px;
+      gap: 32px;
     }
-    .countdown {
-      gap: 4px;
-    }
-    .unit {
-      padding: 8px 2px 6px;
-    }
-    .unit:not(:last-child)::after {
-      display: none;
-    }
+    .footer-col h2 { font-size: 13px; }
+    .social-buttons { gap: 8px; }
+    .social-btn { padding: 9px 14px; font-size: 12.5px; }
+    .contact-list { gap: 14px; font-size: 13px; word-break: break-word; overflow-wrap: anywhere; }
+    .contact-link-item { flex-wrap: wrap; word-break: break-word; overflow-wrap: anywhere; }
+  }
+
+  @media (max-width: 440px) {
+    .brand-copy { display: none; }
+    .topbar { padding: 8px 6px; gap: 4px; }
+    .logo-image { height: 28px; }
+    .isea-image { height: 24px; }
+    .igdtuw-image { height: 24px; }
+    .digital-image { height: 22px; }
+    .sutram-image { width: min(220px, 62vw); max-height: 74px; }
+    .sutram-hero-logo { width: 96vw; max-height: 95px; }
+    .content { padding: 20px 12px 24px; }
+    .eyebrow { font-size: 10.5px; padding: 6px 12px; }
+    .tagline { font-size: 10.5px; letter-spacing: 0.15em; }
+    .countdown { gap: 4px; max-width: 340px; }
+    .unit { padding: 8px 3px 6px; }
+    .unit:not(:last-child)::after { display: none; }
+    .number { font-size: 26px; }
+    .label { font-size: 9px; }
+    .message { font-size: 13px; }
+    .footer-bottom-bar { font-size: 11px; padding: 14px 16px; flex-direction: column; gap: 6px; text-align: center; }
   }
 </style>
 </head>
@@ -671,25 +717,30 @@
     <main class="announcement">
       <header class="topbar">
         <div class="brand">
-          <div class="chatgpt-badge" title="AI Cyber Forensics Engine">
-            <img class="chatgpt-image" src="ChatGPT Image Aug 19, 2026, 01_39_59 AM.png" alt="ChatGPT AI Forensics Logo" />
+          <img class="igdtuw-image" src="igdtuw-logo.473df1c6cbcd03a6bf01.png" alt="IGDTUW logo" />
+          <div class="brand-copy">
+            <strong>Indira Gandhi Delhi</strong>Technical University<br />for Women
           </div>
+        </div>
+
+        <div class="sutram-mark">
+          <img class="sutram-image" src="sutram_logo.jpeg" alt="SUTRAM 2026 logo" />
+        </div>
+
+        <div class="brand right">
           <img class="logo-image" src="Emblem_of_India_with_transparent_background.png" alt="Government of India emblem" />
           <img class="isea-image" src="isea_logo.png" alt="ISEA logo" />
           <div class="brand-copy">
             <strong>Ministry of Electronics &amp;</strong>Information Technology<br />Government of India
           </div>
-        </div>
-        <div class="sutram-mark">
-          <img class="sutram-image" src="sutram_logo.jpeg" alt="SUTRAM 2026 logo" />
-        </div>
-        <div class="brand right">
-          <img class="igdtuw-image" src="igdtuw-logo.473df1c6cbcd03a6bf01.png" alt="IGDTUW logo" />
-          <div class="brand-copy">
-            <strong>Indira Gandhi Delhi</strong>Technical University<br />for Women
-          </div>
           <img class="digital-image" src="digital_india.png" alt="Digital India logo" />
         </div>
+
+        <button class="hamburger-btn" id="menuToggle" aria-label="Toggle navigation menu" title="Navigation Menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
       </header>
 
       <section class="content">
@@ -767,6 +818,23 @@
     </main>
   </div>
 
+  <!-- Slide-Out Navigation Drawer -->
+  <div class="nav-drawer" id="navDrawer">
+    <div class="drawer-header">
+      <span class="drawer-title">SUTRAM 2026</span>
+      <button class="close-drawer" id="closeDrawer" aria-label="Close menu">&times;</button>
+    </div>
+    <ul class="drawer-links">
+      <li><a href="index.html"><span>🏠</span> Home</a></li>
+      <li><a href="sitemap.html"><span>🗺️</span> Website Sitemap</a></li>
+      <li><a href="https://www.instagram.com/sutram_2026?igsh=MTRsaG00M3dqNG5oaA==" target="_blank" rel="noopener"><span>📷</span> Instagram</a></li>
+      <li><a href="https://chat.whatsapp.com/GdZ1pulNiuoJmmW5uX4iJ7?s=sh&p=a&ilr=0" target="_blank" rel="noopener"><span>💬</span> WhatsApp Group</a></li>
+      <li><a href="https://t.me/sutram2026" target="_blank" rel="noopener"><span>✈️</span> Telegram Channel</a></li>
+      <li><a href="mailto:contact@sutram2026.in"><span>✉️</span> Contact Email</a></li>
+    </ul>
+  </div>
+  <div class="nav-backdrop" id="navBackdrop"></div>
+
 <script>
   const target = new Date("2026-09-05T00:00:00+05:30").getTime();
   const pad = value => String(value).padStart(2, "0");
@@ -785,6 +853,22 @@
   }
   updateCountdown();
   setInterval(updateCountdown, 1000);
+
+  // 3-Line Hamburger Menu Toggle Logic
+  const menuToggle = document.getElementById("menuToggle");
+  const closeDrawer = document.getElementById("closeDrawer");
+  const navDrawer = document.getElementById("navDrawer");
+  const navBackdrop = document.getElementById("navBackdrop");
+
+  function toggleNav() {
+    menuToggle.classList.toggle("active");
+    navDrawer.classList.toggle("open");
+    navBackdrop.classList.toggle("open");
+  }
+
+  menuToggle.addEventListener("click", toggleNav);
+  closeDrawer.addEventListener("click", toggleNav);
+  navBackdrop.addEventListener("click", toggleNav);
 </script>
 </body>
 </html>
