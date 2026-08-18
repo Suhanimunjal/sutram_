@@ -127,6 +127,11 @@
     justify-content: center;
     z-index: 5;
   }
+  .sutram-mark a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   .sutram-image {
     display: block;
     width: auto;
@@ -246,6 +251,16 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
+    padding: 0;
+    margin: 0;
+  }
+  .drawer-links li {
+    padding-left: 0;
+    margin: 0;
+  }
+  .drawer-links li::before {
+    content: none !important;
+    display: none !important;
   }
   .drawer-links li a {
     font-family: var(--font-heading);
@@ -826,12 +841,12 @@
       <button class="close-drawer" id="closeDrawer" aria-label="Close menu">&times;</button>
     </div>
     <ul class="drawer-links">
-      <li><a href="index.html"><span>🏠</span> Home</a></li>
-      <li><a href="sitemap.html"><span>🗺️</span> Website Sitemap</a></li>
-      <li><a href="https://www.instagram.com/sutram_2026?igsh=MTRsaG00M3dqNG5oaA==" target="_blank" rel="noopener"><span>📷</span> Instagram</a></li>
-      <li><a href="https://chat.whatsapp.com/GdZ1pulNiuoJmmW5uX4iJ7?s=sh&p=a&ilr=0" target="_blank" rel="noopener"><span>💬</span> WhatsApp Group</a></li>
-      <li><a href="https://t.me/sutram2026" target="_blank" rel="noopener"><span>✈️</span> Telegram Channel</a></li>
-      <li><a href="mailto:contact@sutram2026.in"><span>✉️</span> Contact Email</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="sitemap.html">Website Sitemap</a></li>
+      <li><a href="https://www.instagram.com/sutram_2026?igsh=MTRsaG00M3dqNG5oaA==" target="_blank" rel="noopener">Instagram</a></li>
+      <li><a href="https://chat.whatsapp.com/GdZ1pulNiuoJmmW5uX4iJ7?s=sh&p=a&ilr=0" target="_blank" rel="noopener">WhatsApp Group</a></li>
+      <li><a href="https://t.me/sutram2026" target="_blank" rel="noopener">Telegram Channel</a></li>
+      <li><a href="mailto:contact@sutram2026.in">Contact Email</a></li>
     </ul>
   </div>
   <div class="nav-backdrop" id="navBackdrop"></div>
