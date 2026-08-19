@@ -735,22 +735,35 @@
     .number { font-size: 26px; }
     .label { font-size: 9px; }
     .message { font-size: 13px; }
-  }    .footer-bottom-bar { font-size: 11px; padding: 14px 16px; flex-direction: column; gap: 6px; text-align: center; }
-  }
+  }    
+  
+  .footer-bottom-bar { font-size: 11px; padding: 14px 16px; flex-direction: column; gap: 6px; text-align: center; }
 
   .notification-marquee {
     width: 100%;
-    margin: 8px 0 20px;
-    color: #ff0000;
+    margin: 0;
+    background: #fffbe6;
+    border-top: 1px solid #fce69a;
+    border-bottom: 1px solid #fce69a;
+    padding: 14px 0;
+    color: #dc2626;
     font-family: var(--font-body);
     font-weight: 700;
     font-size: 16px;
     letter-spacing: 0.05em;
-    text-shadow: 0 2px 8px rgba(255, 0, 0, 0.2);
+    box-shadow: 0 4px 12px rgba(253, 185, 49, 0.15);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  .notification-marquee marquee {
+    width: 100%;
+    display: flex;
+    align-items: center;
   }
   .notification-marquee .marquee-text {
     display: inline-block;
-    color: #ff0000;
+    color: #dc2626;
   }
   .notification-marquee .highlight {
     font-weight: 900;
@@ -759,18 +772,25 @@
   .main-theme-heading {
     font-family: var(--font-heading);
     font-size: clamp(24px, 4vw, 36px);
-    font-weight: 700;
+    font-weight: 800;
     color: var(--ink-primary);
     line-height: 1.4;
     margin-bottom: 8px;
     letter-spacing: -0.01em;
   }
   .hackathon-highlight {
-    background-color: #f2ba49;
-    color: var(--ink-primary);
-    padding: 2px 10px;
-    border-radius: 4px;
+    background: linear-gradient(135deg, #FFD700 0%, #FDB931 100%);
+    color: #0f2b48;
+    padding: 4px 14px;
+    border-radius: 6px;
     display: inline-block;
+    box-shadow: 0 4px 14px rgba(253, 185, 49, 0.4);
+    transform: rotate(-1.5deg);
+    transition: all 0.3s ease;
+  }
+  .hackathon-highlight:hover {
+    transform: rotate(0deg) scale(1.03);
+    box-shadow: 0 6px 20px rgba(253, 185, 49, 0.6);
   }
   .hosted-by-text {
     margin: 4px 0 24px;
