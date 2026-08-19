@@ -367,7 +367,7 @@
   }
 
   .hero-logo-heading {
-    margin: 18px 0 10px;
+    margin: 0 0 12px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -396,13 +396,23 @@
   }
 
   .tagline {
-    margin: 4px 0 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin: 16px 0 48px;
     font-family: var(--font-mono);
-    font-size: clamp(12px, 1.8vw, 15px);
+    font-size: clamp(11px, 1.5vw, 13px);
     font-weight: 700;
     letter-spacing: 0.35em;
-    color: var(--ink-secondary);
+    color: #cca335;
     text-transform: uppercase;
+  }
+  .tagline::before, .tagline::after {
+    content: "";
+    height: 1.5px;
+    width: 30px;
+    background: #cca335;
   }
 
   .live-line {
@@ -727,6 +737,51 @@
     .message { font-size: 13px; }
   }    .footer-bottom-bar { font-size: 11px; padding: 14px 16px; flex-direction: column; gap: 6px; text-align: center; }
   }
+
+  .notification-marquee {
+    width: 100%;
+    margin: 8px 0 20px;
+    color: #ff0000;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.05em;
+    text-shadow: 0 2px 8px rgba(255, 0, 0, 0.2);
+  }
+  .notification-marquee .marquee-text {
+    display: inline-block;
+    color: #ff0000;
+  }
+  .notification-marquee .highlight {
+    font-weight: 900;
+  }
+
+  .main-theme-heading {
+    font-family: var(--font-heading);
+    font-size: clamp(24px, 4vw, 36px);
+    font-weight: 700;
+    color: var(--ink-primary);
+    line-height: 1.4;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .hackathon-highlight {
+    background-color: #f2ba49;
+    color: var(--ink-primary);
+    padding: 2px 10px;
+    border-radius: 4px;
+    display: inline-block;
+  }
+  .hosted-by-text {
+    margin: 4px 0 24px;
+    font-size: 14.5px;
+    color: var(--ink-muted);
+    line-height: 1.5;
+  }
+  .hosted-by-text strong {
+    color: var(--ink-primary);
+    font-weight: 700;
+  }
 </style>
 </head>
 <body>
@@ -738,10 +793,6 @@
           <div class="brand-copy">
             <strong>Indira Gandhi Delhi</strong>Technical University<br />for Women
           </div>
-        </div>
-
-        <div class="sutram-mark">
-          <img class="sutram-image" src="sutram_logo.jpeg" alt="SUTRAM 2026 logo" />
         </div>
 
         <div class="brand right">
@@ -759,11 +810,17 @@
         </button>
       </header>
 
+      <div class="notification-marquee">
+        <marquee behavior="scroll" direction="left" scrollamount="8">
+          <span class="marquee-text">Welcome to SUTRAM 2026 &mdash; The Premier AI-Powered Cyber Investigation &amp; Digital Forensics <span class="highlight">HACKATHON</span>! Get ready to innovate, investigate, and inspire justice!</span>
+        </marquee>
+      </div>
+
       <section class="content">
-        <div class="eyebrow">
-          <span class="eyebrow-dot"></span>
-          AI-Powered Cyber Investigation &amp; Digital Forensics Hackathon
-        </div>
+        <h2 class="main-theme-heading">
+          AI-Powered Cyber Investigation &amp;<br />
+          Digital Forensics <span class="hackathon-highlight">Hackathon</span>
+        </h2>
         <h1 class="hero-logo-heading">
           <img class="sutram-hero-logo" src="sutram_title_exact.png" alt="SUTRAM 2026 - Where Every Trace Connects" />
           <span class="sr-only">SUTRAM 2026</span>
