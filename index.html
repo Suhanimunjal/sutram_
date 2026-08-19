@@ -396,23 +396,14 @@
   }
 
   .tagline {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    margin: 16px 0 48px;
-    font-family: var(--font-mono);
-    font-size: clamp(11px, 1.5vw, 13px);
-    font-weight: 700;
-    letter-spacing: 0.35em;
-    color: #cca335;
+    margin: 12px 0 48px;
+    font-family: var(--font-heading);
+    font-size: clamp(11px, 1.6vw, 14px);
+    font-weight: 600;
+    letter-spacing: 0.45em;
+    color: var(--ink-secondary);
     text-transform: uppercase;
-  }
-  .tagline::before, .tagline::after {
-    content: "";
-    height: 1.5px;
-    width: 30px;
-    background: #cca335;
+    opacity: 0.95;
   }
 
   .live-line {
@@ -879,7 +870,6 @@
                 Telegram
               </a>
             </div>
-            <div class="handle-badge">@sutram2026</div>
           </section>
 
           <section class="footer-col" id="contact">
